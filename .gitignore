@@ -1,0 +1,8 @@
+# vscode related
+.vscode
+
+# python realted
+__pycache__
+
+# object bucket
+ob_venv

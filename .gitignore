@@ -6,3 +6,5 @@ __pycache__
 
 # object bucket
 ob_venv
+test.py
+object_bucket.egg-info

@@ -8,3 +8,5 @@ __pycache__
 ob_venv
 test.py
 object_bucket.egg-info
+dist
+build

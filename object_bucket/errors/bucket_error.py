@@ -33,7 +33,7 @@ class DropletTypeError(Exception):
     """Raised when the object type cannot be pickled"""
 
     def __init__(self, droplet_name: str, obj: object) -> None:
-        self.droplet_name = name
+        self.droplet_name = droplet_name
         self.message = f"Droplet of type '{type(obj)}' cannot be saved..."
 
     def __str__(self) -> str:

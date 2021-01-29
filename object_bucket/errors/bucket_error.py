@@ -1,3 +1,6 @@
+from os import name
+
+
 class DropletDoesNotExistsError(Exception):
     """Raised when a non defined droplet is modified"""
 
@@ -13,3 +16,25 @@ class DropletDoesNotExistsError(Exception):
 
     def __str__(self) -> str:
         return self.msg
+
+
+class DropletExistsError(Exception):
+    """Raises when the droplet that already exists in a bucket is re initialized."""
+    
+    def __init__(self, droplet_name: str) -> None:
+        self.name = droplet_name
+        self.message = f"The droplet {self.name} already exists'..."
+
+    def __str__(self) -> str:
+        return self.message
+
+
+class DropletTypeError(Exception):
+    """Raised when the object type cannot be pickled"""
+
+    def __init__(self, droplet_name: str, obj: object) -> None:
+        self.droplet_name = name
+        self.message = f"Droplet of type '{type(obj)}' cannot be saved..."
+
+    def __str__(self) -> str:
+        return self.message

@@ -69,6 +69,12 @@ class Bucket:
     def modify_droplet(self, droplet_name: str, obj) -> None:
         """Modifies the given droplet raises an error if the droplet
              does not exists"""
+        if not self.check_droplet_exists(droplet_name):
+            raise DropletDoesNotExistsError(droplet_name)
+
+        if not dill.pickles(obj):
+            raise DropletTypeError(droplet_name, obj)
+        
         self.__temp_bucket[droplet_name] = obj
 
     def remove_droplet(self, droplet_name: str) -> None:

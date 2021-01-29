@@ -1,5 +1,3 @@
-from os import name
-
 
 class DropletDoesNotExistsError(Exception):
     """Raised when a non defined droplet is modified"""

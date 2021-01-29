@@ -46,7 +46,7 @@ ___
   Trying to modify a droplet that does not exists will cause an error
 
   - Saving a bucket
-  All the things mentioned above will not added or saved permanently to do so it is necessary to save the bucket
+  All the things mentioned above will not be added or saved permanently, to do so it is necessary to save the bucket.
   ```python
   test_bucket.save_bucket()
   ```
@@ -58,4 +58,4 @@ ___
  print(a)  # {1: "a"}
  ```
 
- Trying to get a droplet that does nor exists will cause an error.
+ Trying to get a droplet that does not exists will cause an error.

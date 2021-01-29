@@ -22,7 +22,6 @@ class Bucket:
 
         self.__object_bucket_path = user_data_dir("buckets", "Object-Bucket")
         self.__bucket_file_path = os.path.join(self.__object_bucket_path, self.bucket_name)
-        # print(self.__object_bucket_path)
         
 
         # A dict to store a retrieve data during runtime
@@ -63,11 +62,9 @@ class Bucket:
             raise DropletExistsError(droplet_name)
 
         if not dill.pickles(obj):
-            print("In if")
             raise DropletTypeError(droplet_name, obj)
         
         self.__temp_bucket[droplet_name] = obj
-        print(self.__temp_bucket, "temp")
 
     def modify_droplet(self, droplet_name: str, obj) -> None:
         """Modifies the given droplet raises an error if the droplet
@@ -98,9 +95,6 @@ class Bucket:
         self.__temp_bucket.clear()
         with suppress(FileNotFoundError):
             os.remove(self.__bucket_file_path)
-
-        print(self.__temp_bucket)
-
 
     def check_droplet_exists(self, droplet_name: str) -> bool:
         return True if droplet_name in self.__temp_bucket else False

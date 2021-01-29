@@ -31,6 +31,9 @@ class Bucket:
         self.__make_required_directories()
         self.__load_bucket()
 
+    def __repr__(self) -> str:
+        return str(self.__temp_bucket)
+
 
     def __make_required_directories(self):
         Path(self.__object_bucket_path).mkdir(parents=True, exist_ok=True)
@@ -86,6 +89,18 @@ class Bucket:
 
         with open(self.__bucket_file_path, "wb") as f:
             dill.dump(self.__temp_bucket, f)
+
+    def delete_bucket(self):
+        """deletes all the permanently stored droplets from a bucket,
+        and remove all the droplets from the runtime storage.
+        """
+
+        self.__temp_bucket.clear()
+        with suppress(FileNotFoundError):
+            os.remove(self.__bucket_file_path)
+
+        print(self.__temp_bucket)
+
 
     def check_droplet_exists(self, droplet_name: str) -> bool:
         return True if droplet_name in self.__temp_bucket else False

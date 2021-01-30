@@ -2,6 +2,7 @@ from contextlib import suppress
 from pathlib import Path
 
 from typing import Any
+from typing import Dict
 import os
 
 
@@ -52,6 +53,10 @@ class Bucket:
 
         except KeyError:
             raise DropletDoesNotExistsError(droplet_name)
+
+    def get_all_droplets(self) -> Dict[str, object]:
+        """Returns the current runtime bucket."""
+        return self.__temp_bucket
 
 
     def add_droplet(self, droplet_name: str, obj: object) -> None:

@@ -40,3 +40,22 @@ def test_remove_droplet(bucket_to_test: Bucket) -> None:
     assert bucket_to_test.check_droplet_exists("demo") == True
     bucket_to_test.remove_droplet("demo")
     assert bucket_to_test.check_droplet_exists("demo") == False
+
+
+def test_get_all_droplets(bucket_to_test: Bucket) -> None:
+    drop1 = [1, 2, 3, 4]
+    drop2 = "Hello"
+    drop3 = {1: "a", 2: "b"}
+    bucket_to_test.add_droplet("drop1", drop1)
+    bucket_to_test.add_droplet("drop2", drop2)
+    bucket_to_test.add_droplet("drop3", drop3)
+
+    rv = bucket_to_test.get_all_droplets()
+    assert rv == {
+        "drop1": [1, 2, 3, 4],
+        "drop2": "Hello",
+        "drop3": {
+            1: "a",
+            2: "b"
+        }
+    }

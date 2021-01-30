@@ -81,6 +81,11 @@ ___
  ```python
  test_bucket.delete_bucket()
  ```
+  - You can also delete a bucket using remove_bucket function
+  ```python
+  from object_bucket import remove_bucket
+  remove_bucket("name-of_bucket_to_be_removed")
+  ```
 
  ## Using the context manager.
  It might be a hastle to remember to save to bucket, so you can use the context manager to avoid using the ```save_bucket``` method.
@@ -97,3 +102,27 @@ ___
    b.delete_bucket()  # wont work as the file will be again saved,
    # but the runtime contents will be cleared
  ```
+
+ ## Some more stuff
+
+  - You can use the if statement to check whether a bucket is empty or not
+  ```python
+  from object_bucket import Bucket
+  t = Bucket("name")
+  if t:
+    print("Hello")  # -> does not print anything as bucket is empty
+
+  t.add_droplet("demo", 1)
+  if t:
+    print("Hello 2")  # -> prints "hello 2" as the bucket has at least one droplet 
+  ```
+
+  - To get the number of droplets in a bucket you can use the ```len``` method
+  ```python
+  from object_bucket import Bucket
+  t = Bucket("name")
+  print(len(t)) # -> 0
+  t.add_droplet("demo", [1, 2, 3])
+  print(len(t)) # -> 1
+
+  ```

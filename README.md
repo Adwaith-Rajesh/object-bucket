@@ -1,5 +1,5 @@
 # Object Bucket
-An easy and fun way to store python objects
+An easy and fun way to store python objects.
 
 ____
 
@@ -11,12 +11,12 @@ ____
 
 ___
 ## Description
-Object Bucket is a python package that allows you to store python packages permanently in a more user friendly way.
+Object Bucket is a python package that allows you to store python objects permanently in a more user friendly way.
 
 ___
 ## Installation
 
-The object-bucket package can be installed by using pip
+The object-bucket package can be installed by using pip.
 ```bash
 pip install object-bucket
 ```
@@ -30,27 +30,27 @@ ___
   
   test_bucket = Bucket("name-of-the-bucket")
   ```
-  - Adding droplets to the bucket, droplets are considered as objects that you want to save permanently
+  - Adding droplets to the bucket, droplets are considered as objects that you want to save permanently.
 
   ```python
   test_obj = [1, 2, 3, 4]
   test_bucket.add_droplet("droplet-name", test_obj)
   ```
-  Trying to add a droplet with the same name will cause an error
+  Trying to add a droplet with the same name will cause an error.
 
   - Modifying a droplet
   ```python
   new_obj = {1: "a"}
   test_bucket.modify_droplet("droplet-name", new_obj)
   ```
-  Trying to modify a droplet that does not exists will cause an error
+  Trying to modify a droplet that does not exists will cause an error.
 
   - Saving a bucket
   All the things mentioned above will not be added or saved permanently, to do so it is necessary to save the bucket.
   ```python
   test_bucket.save_bucket()
   ```
- - Retrieving values from a bucket
+ - Retrieving values from a bucket.
  ```python
  from object_bucket import Bucket
  test_bucket = Bucket("name-of-the-bucket")
@@ -81,7 +81,7 @@ ___
  ```python
  test_bucket.delete_bucket()
  ```
-  - You can also delete a bucket using remove_bucket function
+  - You can also delete a bucket using ```remove_bucket``` function
   ```python
   from object_bucket import remove_bucket
   remove_bucket("name-of_bucket_to_be_removed")

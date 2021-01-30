@@ -1,3 +1,4 @@
+![Testing](https://github.com/Adwaith-Rajesh/object-bucket/workflows/Testing/badge.svg)
 # Object Bucket
 An easy and fun way to store python objects.
 

@@ -59,3 +59,25 @@ def test_get_all_droplets(bucket_to_test: Bucket) -> None:
             2: "b"
         }
     }
+
+
+def test_if_stmt(bucket_to_test: Bucket) -> None:
+    bucket_to_test.add_droplet("demo", 1)
+    w = False
+    if bucket_to_test:
+        w = True
+    assert w == True
+
+    bucket_to_test.remove_droplet("demo")
+    n = False
+    if bucket_to_test:
+        n = True
+
+    assert n == False
+
+def test_bucket_len(bucket_to_test: Bucket) -> None:
+    assert len(bucket_to_test) == 0
+    for i in range(10):
+        bucket_to_test.add_droplet(str(i), i)
+
+    assert len(bucket_to_test) == 10

@@ -84,6 +84,12 @@ class Bucket:
         
         self.__temp_bucket[droplet_name] = obj
 
+
+    def add_droplets(self, droplets: Dict[str, object]) -> None:
+        """Allows the user to add multiple droplets"""
+        for name, obj in droplets.items():
+            self.add_droplet(name, obj)
+
     def modify_droplet(self, droplet_name: str, obj) -> None:
         """Modifies the given droplet raises an error if the droplet
              does not exists"""

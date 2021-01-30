@@ -61,6 +61,22 @@ def test_get_all_droplets(bucket_to_test: Bucket) -> None:
     }
 
 
+def test_bucket_add_droplets(bucket_to_test: Bucket) -> None:
+    droplets = {
+        "one": 1,
+        "two": 2,
+        "three": [2, 3, 4]
+    }
+
+    bucket_to_test.add_droplets(droplets)
+    assert bucket_to_test.check_droplet_exists("one") == True
+    assert bucket_to_test.check_droplet_exists("two") == True
+    assert bucket_to_test.check_droplet_exists("three") == True
+    assert bucket_to_test.get_droplet("one") == 1
+    assert bucket_to_test.get_droplet("two") == 2
+    assert bucket_to_test.get_droplet("three") == [2, 3, 4]
+    
+
 def test_if_stmt(bucket_to_test: Bucket) -> None:
     bucket_to_test.add_droplet("demo", 1)
     w = False

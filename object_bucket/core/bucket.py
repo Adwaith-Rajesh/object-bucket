@@ -41,6 +41,12 @@ class Bucket:
     def __repr__(self) -> str:
         return str(self.__temp_bucket)
 
+    def __bool__(self) -> bool:
+        return True if len(self) > 0 else False
+
+    def __len__(self) -> int:
+        return len(self.__temp_bucket)
+
 
     def __make_required_directories(self):
         Path(self.__object_bucket_path).mkdir(parents=True, exist_ok=True)

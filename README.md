@@ -76,3 +76,24 @@ ___
  # output
  {"drop1": [1, 2, 3, 4], "drop2": "Hello", "drop3": {1: "a", 2: "b"}}
  ```
+ - Deleting a bucket
+ To delete the bucket and to clear the runtime storage of all the droplets.
+ ```python
+ test_bucket.delete_bucket()
+ ```
+
+ ## Using the context manager.
+ It might be a hastle to remember to save to bucket, so you can use the context manager to avoid using the ```save_bucket``` method.
+
+ **Note**: Using ```Bucket().delete_bucket``` inside the context manager is useless as at the end the file will be saved automatically.
+
+ ```python
+ from object_bucket import Bucket
+ 
+ with Bucket("name-of-the-bucket") as b:
+   # code to execute
+   b.add_droplet("name", 1)
+   # ...etc
+   b.delete_bucket()  # wont work as the file will be again saved,
+   # but the runtime contents will be cleared
+ ```

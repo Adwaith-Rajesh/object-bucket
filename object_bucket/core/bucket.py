@@ -10,7 +10,8 @@ from appdirs import user_data_dir
 import dill
 
 
-from object_bucket.errors.bucket_error import DropletDoesNotExistsError, DropletExistsError
+from object_bucket.errors.bucket_error import DropletDoesNotExistsError
+from object_bucket.errors.bucket_error import DropletExistsError
 from object_bucket.errors.bucket_error import DropletTypeError
 
 
@@ -30,6 +31,12 @@ class Bucket:
 
         self.__make_required_directories()
         self.__load_bucket()
+
+    def __enter__(self) -> "Bucket":
+        return Bucket(self.bucket_name)
+
+    def __exit__(self, type, value, traceback):
+        self.save_bucket()
 
     def __repr__(self) -> str:
         return str(self.__temp_bucket)

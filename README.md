@@ -56,6 +56,23 @@ ___
  test_bucket = Bucket("name-of-the-bucket")
  a = test.bucker.get_droplet("droplet-name")
  print(a)  # {1: "a"}
+ 
  ```
-
  Trying to get a droplet that does not exists will cause an error.
+
+ - Get all the runtime droplets
+ ```python
+ drop1 = [1, 2, 3, 4]
+ drop2 = "Hello"
+ drop3 = {1: "a", 2: "b"}
+ test_bucket.add_droplet("drop1", drop1)
+ test_bucket.add_droplet("drop2", drop2)
+ test_bucket.add_droplet("drop3", drop3)
+
+ # to get all the droplets
+ a = test_bucket.get_all_droplets()
+ print(a)
+
+ # output
+ {"drop1": [1, 2, 3, 4], "drop2": "Hello", "drop3": {1: "a", 2: "b"}}
+ ```

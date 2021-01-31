@@ -99,7 +99,7 @@ ___
   - You can also delete a bucket using ```remove_bucket``` function
   ```python
   from object_bucket import remove_bucket
-  remove_bucket("name-of_bucket_to_be_removed")
+  remove_bucket("name-of_bucket_to_be_removed", bucket_file_path="file-path-of-the-bucket")
   ```
 
  ## Using the context manager.

@@ -1,4 +1,5 @@
 ![Testing](https://github.com/Adwaith-Rajesh/object-bucket/workflows/Testing/badge.svg)
+![Pypi-Upload](https://github.com/Adwaith-Rajesh/object-bucket/workflows/Pypi-Upload/badge.svg)
 # Object Bucket
 An easy and fun way to store python objects.
 
@@ -38,6 +39,19 @@ ___
   test_bucket.add_droplet("droplet-name", test_obj)
   ```
   Trying to add a droplet with the same name will cause an error.
+
+  - Adding multiple droplets.
+  To add multiple droplets you have to have a dictionary that contains all the names and objects of the droplet.
+  To add the dictionary you can use the ```add_droplets``` method.
+  ```python
+  droplets = {
+        "one": 1,
+        "two": 2,
+        "three": [2, 3, 4]
+    }
+
+    test_bucket.add_droplets(droplets)
+  ```
 
   - Modifying a droplet
   ```python

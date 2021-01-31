@@ -5,7 +5,7 @@ import pytest
 
 @pytest.fixture()
 def bucket_to_test():
-    bucket = Bucket("pytest-bucket")
+    bucket = Bucket("pytest-bucket", bucket_folder=".")
     yield bucket
     bucket.delete_bucket()
 

@@ -18,11 +18,11 @@ from object_bucket.errors.bucket_error import DropletTypeError
 class Bucket:
     """Load, save and modify buckets"""
 
-    def __init__(self, bucket: str) -> None:
+    def __init__(self, bucket: str, bucket_folder: str=user_data_dir("buckets", "Object-Bucket")) -> None:
 
         self.bucket_name = bucket
 
-        self.__object_bucket_path = user_data_dir("buckets", "Object-Bucket")
+        self.__object_bucket_path = bucket_folder
         self.__bucket_file_path = os.path.join(self.__object_bucket_path, self.bucket_name)
         
 

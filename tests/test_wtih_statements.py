@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 
 import pytest
-from appdirs import user_data_dir
 
 from object_bucket import Bucket
 
@@ -11,8 +10,7 @@ from object_bucket import Bucket
 def file_():
     file_name = "py-test-with"
     yield file_name
-    os.remove(os.path.join(user_data_dir(
-        "buckets", "Object-Bucket"), file_name))
+    os.remove(os.path.join(".", file_name))
 
 
 def test_with_stmt_file_creation_on_exit(file_) -> None:
@@ -20,8 +18,7 @@ def test_with_stmt_file_creation_on_exit(file_) -> None:
     with Bucket(file_) as _:
         pass
 
-    file_dir = os.path.join(user_data_dir(
-        "buckets", "Object-Bucket"), "py-test-with")
+    file_dir = os.path.join(".", "py-test-with")
     assert Path(file_dir).is_file() is True
 
 

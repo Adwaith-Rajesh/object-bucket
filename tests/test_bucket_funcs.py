@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 
 import pytest
-from appdirs import user_data_dir  # To get the path to the file
 
 from object_bucket import Bucket
 
@@ -15,8 +14,7 @@ def bucket_to_test():
 
 
 def test_bucket_file_creation(bucket_to_test: Bucket):
-    file_dir = os.path.join(user_data_dir(
-        "buckets", "Object-Bucket"), "pytest-bucket")
+    file_dir = os.path.join(".", "pytest-bucket")
     bucket_to_test.save_bucket()
     assert Path(file_dir).is_file() is True
 

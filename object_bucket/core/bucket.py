@@ -1,14 +1,11 @@
+import os
 from contextlib import suppress
 from pathlib import Path
-
 from typing import Any
 from typing import Dict
-import os
 
-
-from appdirs import user_data_dir
 import dill
-
+from appdirs import user_data_dir
 
 from object_bucket.errors.bucket_error import DropletDoesNotExistsError
 from object_bucket.errors.bucket_error import DropletExistsError
@@ -18,13 +15,13 @@ from object_bucket.errors.bucket_error import DropletTypeError
 class Bucket:
     """Load, save and modify buckets"""
 
-    def __init__(self, bucket: str, bucket_folder: str=user_data_dir("buckets", "Object-Bucket")) -> None:
+    def __init__(self, bucket: str, bucket_folder: str = user_data_dir("buckets", "Object-Bucket")) -> None:
 
         self.bucket_name = bucket
 
         self.__object_bucket_path = bucket_folder
-        self.__bucket_file_path = os.path.join(self.__object_bucket_path, self.bucket_name)
-        
+        self.__bucket_file_path = os.path.join(
+            self.__object_bucket_path, self.bucket_name)
 
         # A dict to store a retrieve data during runtime
         self.__temp_bucket = {}
@@ -47,7 +44,6 @@ class Bucket:
     def __len__(self) -> int:
         return len(self.__temp_bucket)
 
-
     def __make_required_directories(self):
         Path(self.__object_bucket_path).mkdir(parents=True, exist_ok=True)
 
@@ -57,7 +53,7 @@ class Bucket:
             with open(self.__bucket_file_path, "rb") as f:
                 self.__temp_bucket = dill.load(f)
 
-    def get_droplet(self, droplet_name:str) -> Any:
+    def get_droplet(self, droplet_name: str) -> Any:
         """Gets the droplet the given name, raises error when the
              droplet does not exists"""
         try:
@@ -71,9 +67,8 @@ class Bucket:
         """Returns the current runtime bucket."""
         return self.__temp_bucket
 
-
     def add_droplet(self, droplet_name: str, obj: object) -> None:
-        """Adds a new droplet to the bucket and raises an error if 
+        """Adds a new droplet to the bucket and raises an error if
         the droplet with the same name already exists."""
 
         if self.check_droplet_exists(droplet_name):
@@ -81,9 +76,8 @@ class Bucket:
 
         if not dill.pickles(obj):
             raise DropletTypeError(droplet_name, obj)
-        
-        self.__temp_bucket[droplet_name] = obj
 
+        self.__temp_bucket[droplet_name] = obj
 
     def add_droplets(self, droplets: Dict[str, object]) -> None:
         """Allows the user to add multiple droplets"""
@@ -98,7 +92,7 @@ class Bucket:
 
         if not dill.pickles(obj):
             raise DropletTypeError(droplet_name, obj)
-        
+
         self.__temp_bucket[droplet_name] = obj
 
     def remove_droplet(self, droplet_name: str) -> None:
@@ -128,4 +122,3 @@ class Bucket:
 
     def check_droplet_exists(self, droplet_name: str) -> bool:
         return True if droplet_name in self.__temp_bucket else False
-

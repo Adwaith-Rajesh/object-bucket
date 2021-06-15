@@ -18,7 +18,7 @@ class DropletDoesNotExistsError(Exception):
 
 class DropletExistsError(Exception):
     """Raises when the droplet that already exists in a bucket is re initialized."""
-    
+
     def __init__(self, droplet_name: str) -> None:
         self.name = droplet_name
         self.message = f"The droplet {self.name} already exists'..."

@@ -1,6 +1,9 @@
-from object_bucket import Bucket
-from object_bucket.errors import DropletDoesNotExistsError, DropletExistsError, DropletTypeError
 import pytest
+
+from object_bucket import Bucket
+from object_bucket.errors import DropletDoesNotExistsError
+from object_bucket.errors import DropletExistsError
+from object_bucket.errors import DropletTypeError
 
 
 @pytest.fixture()
@@ -28,6 +31,7 @@ def test_droplet_exists_error(bucket_to_test: Bucket) -> None:
     with pytest.raises(DropletExistsError):
         bucket_to_test.add_droplet("demo", 2)
 
+
 def test_droplet_type_error(bucket_to_test: Bucket) -> None:
     """Raised when an object that cannot be saved is added or modified into the bucket"""
     # one example, generators cannot be saved
@@ -40,10 +44,8 @@ def test_droplet_type_error(bucket_to_test: Bucket) -> None:
         f = foo()
         bucket_to_test.add_droplet("demo", f)
 
-    #modifying a droplet
+    # modifying a droplet
     with pytest.raises(DropletTypeError):
         f = foo()
         bucket_to_test.add_droplet("demo", 1)
         bucket_to_test.modify_droplet("demo", f)
-
-    

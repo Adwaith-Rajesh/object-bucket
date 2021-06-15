@@ -14,18 +14,12 @@ from object_bucket.errors.bucket_error import DropletTypeError
 class Bucket:
     """Load, save and modify buckets"""
 
-    def __init__(self, bucket: str, bucket_folder: str = ".") -> None:
+    def __init__(self, bucket: str) -> None:
 
         self.bucket_name = bucket
 
-        self.__object_bucket_path = bucket_folder
-        self.__bucket_file_path = os.path.join(
-            self.__object_bucket_path, self.bucket_name)
-
         # A dict to store a retrieve data during runtime
         self.__temp_bucket = {}
-
-        self.__make_required_directories()
         self.__load_bucket()
 
     def __enter__(self) -> "Bucket":
@@ -43,13 +37,10 @@ class Bucket:
     def __len__(self) -> int:
         return len(self.__temp_bucket)
 
-    def __make_required_directories(self):
-        Path(self.__object_bucket_path).mkdir(parents=True, exist_ok=True)
-
     def __load_bucket(self):
-        b_file = Path(self.__bucket_file_path)
+        b_file = Path(self.bucket_name)
         if b_file.is_file():
-            with open(self.__bucket_file_path, "rb") as f:
+            with open(self.bucket_name, "rb") as f:
                 self.__temp_bucket = dill.load(f)
 
     def get_droplet(self, droplet_name: str) -> Any:
@@ -107,7 +98,7 @@ class Bucket:
          in order to save the droplets permanently.
         """
 
-        with open(self.__bucket_file_path, "wb") as f:
+        with open(self.bucket_name, "wb") as f:
             dill.dump(self.__temp_bucket, f)
 
     def delete_bucket(self):
@@ -117,7 +108,7 @@ class Bucket:
 
         self.__temp_bucket.clear()
         with suppress(FileNotFoundError):
-            os.remove(self.__bucket_file_path)
+            os.remove(self.bucket_name)
 
     def check_droplet_exists(self, droplet_name: str) -> bool:
         return True if droplet_name in self.__temp_bucket else False

@@ -5,7 +5,6 @@ from typing import Any
 from typing import Dict
 
 import dill
-from appdirs import user_data_dir
 
 from object_bucket.errors.bucket_error import DropletDoesNotExistsError
 from object_bucket.errors.bucket_error import DropletExistsError
@@ -15,7 +14,7 @@ from object_bucket.errors.bucket_error import DropletTypeError
 class Bucket:
     """Load, save and modify buckets"""
 
-    def __init__(self, bucket: str, bucket_folder: str = user_data_dir("buckets", "Object-Bucket")) -> None:
+    def __init__(self, bucket: str, bucket_folder: str = ".") -> None:
 
         self.bucket_name = bucket
 

@@ -8,7 +8,7 @@ from object_bucket.errors import DropletTypeError
 
 @pytest.fixture()
 def bucket_to_test():
-    bucket = Bucket("pytest-bucket", bucket_folder=".")
+    bucket = Bucket("pytest-bucket")
     yield bucket
     bucket.delete_bucket()
 

@@ -29,7 +29,7 @@ ___
   - Creating new bucket.
   ```python
   from object_bucket import Bucket
-  
+
   test_bucket = Bucket("name-of-the-bucket")
   ```
   - Adding droplets to the bucket, droplets are considered as objects that you want to save permanently.
@@ -71,7 +71,7 @@ ___
  test_bucket = Bucket("name-of-the-bucket")
  a = test.bucker.get_droplet("droplet-name")
  print(a)  # {1: "a"}
- 
+
  ```
  Trying to get a droplet that does not exists will cause an error.
 
@@ -109,7 +109,7 @@ ___
 
  ```python
  from object_bucket import Bucket
- 
+
  with Bucket("name-of-the-bucket") as b:
    # code to execute
    b.add_droplet("name", 1)
@@ -129,7 +129,7 @@ ___
 
   t.add_droplet("demo", 1)
   if t:
-    print("Hello 2")  # -> prints "hello 2" as the bucket has at least one droplet 
+    print("Hello 2")  # -> prints "hello 2" as the bucket has at least one droplet
   ```
 
   - To get the number of droplets in a bucket you can use the ```len``` method

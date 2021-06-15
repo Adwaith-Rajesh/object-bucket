@@ -26,7 +26,7 @@ pip install object-bucket
 ___
 ## Usage
 
-  - Creating new bucket.
+  - ### Creating new bucket.
   ```python
   from object_bucket import Bucket
 
@@ -53,19 +53,19 @@ ___
     test_bucket.add_droplets(droplets)
   ```
 
-  - Modifying a droplet
+  - ### Modifying a droplet
   ```python
   new_obj = {1: "a"}
   test_bucket.modify_droplet("droplet-name", new_obj)
   ```
   Trying to modify a droplet that does not exists will cause an error.
 
-  - Saving a bucket
+  - ### Saving a bucket
   All the things mentioned above will not be added or saved permanently, to do so it is necessary to save the bucket.
   ```python
   test_bucket.save_bucket()
   ```
- - Retrieving values from a bucket.
+ - ### Retrieving values from a bucket.
  ```python
  from object_bucket import Bucket
  test_bucket = Bucket("name-of-the-bucket")

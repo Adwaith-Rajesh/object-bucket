@@ -140,19 +140,3 @@ ___
   t.add_droplet("demo", [1, 2, 3])
   print(len(t)) # -> 1
   ```
-  - Change the folder in which the bucket are stored.
-
-    By default all the bucket are stored in:
-
-    > Unix:                   ~/.local/share/Object-Bucket    # or in $XDG_DATA_HOME,
-
-    > Win 7:   C:\Users\username\AppData\Local\Object-Bucket\buckets
-
-    To change it, you can pass a keyword argument called ```bucket_folder```, to the ```Bucket``` class
-
-    ```python
-    from object_bucket import Bucket
-
-    b = Bucket("test", bucket_folder="folder-path")
-    ...
-    ```
